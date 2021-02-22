@@ -10,6 +10,7 @@
                 </li>
                 <?php else: ?>
                     <?php if(current_user()->is_admin): ?>
+                        Welcome <?= current_user()->first_name ?>,
                         <li>
                             <a href="<?= base_url('admin/dashboard') ?>">Dashboard</a>
                         </li>
