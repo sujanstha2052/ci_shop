@@ -25,9 +25,9 @@
         <div id="page-wrapper" class="gray-bg">
             <?= $this->include('layouts/partials/admin/header') ?>
 
-
-            <?= $this->renderSection('content') ?>
-
+            <div class="wrapper">
+                <?= $this->renderSection('content') ?>
+            </div>
             <?= $this->include('layouts/partials/admin/footer') ?>
 
 

@@ -45,6 +45,8 @@ $routes->get('/admin/dashboard', function() {
 	return view('admin/dashboard');
 });
 
+//$routes->resource('/admin/category', ['Admin/CategoryControlle']);
+
 
 /*
 * --------------------------------------------------------------------
