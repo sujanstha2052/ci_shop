@@ -1,0 +1,46 @@
+.navbar-brand {
+    text-shadow: 1px 1px #fe4902, 
+    2px 2px #fe4902, 
+    3px 3px #fe4902, 
+    4px 4px #fe4902;
+}
+
+.navbar-brand span {
+    font-weight: bold;
+}
+
+.topNav {
+    background-color: #ddd;
+    height: 25px;
+    font-size: 14px;
+    text-align: right;
+    color: black;
+}
+
+.topNav ul li {
+    display: inline-block;
+    margin-left: 5px;
+}
+
+.topNav ul li a {
+    text-decoration: none;
+    color: black;
+    transition: all 0.3s;
+}
+
+.topNav ul li a:hover {
+    text-decoration: none;
+    color: #fe4902;
+}
+
+#searchForm input, #searchForm button {
+    border-radius: 0 !important;
+}
+
+#searchForm input {
+    width: 350px !important;
+}
+
+#authForm {
+    margin-top: 5rem;
+}
