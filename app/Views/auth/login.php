@@ -1,5 +1,5 @@
 <?= $this->extend('layouts/default') ?>
-<?= $this->section('title') ?>Registration<?= $this->endSection() ?>
+<?= $this->section('title') ?>Login<?= $this->endSection() ?>
 <?= $this->section('content') ?>
 
 <div id="authForm">

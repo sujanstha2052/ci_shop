@@ -37,6 +37,15 @@ $routes->get('/', 'Home::index');
 $routes->get('/login', 'Authentication::login', ['filter' => 'guest']);
 $routes->get('/register', 'Authentication::registration', ['filter' => 'guest']);
 $routes->get('/logout', 'Authentication::logout');
+
+// === === === === === === === === === === === === === === === === === === === === ===
+// Admin Routes
+// === === === === === === === === === === === === === === === === === === === === ===
+$routes->get('/admin/dashboard', function() {
+	return view('admin/dashboard');
+});
+
+
 /*
 * --------------------------------------------------------------------
 * Additional Routing
