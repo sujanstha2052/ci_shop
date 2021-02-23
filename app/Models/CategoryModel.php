@@ -20,11 +20,12 @@ class CategoryModel extends Model
 	];
 
 	protected $beforeInsert = ['generateSlug'];
+	protected $beforeUpdate = ['generateSlug'];
 
 	protected function generateSlug(array $data)
 	{
 		if(isset($data['data']['cat_title'])) {
-			$data['data']['cat_url'] = url_title($data['data']['cat_title']);
+			$data['data']['cat_url'] = url_title(strtolower($data['data']['cat_title']));
 		}
 		return $data;
 	}

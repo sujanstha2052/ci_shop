@@ -5,7 +5,7 @@
 <div class="ibox">
 	<div class="ibox-content">
 		<h3>Manage Category</h3>
-		<a href="<?= base_url('admin/categories/create') ?>" class="btn btn-sm btn-primary">
+		<a href="<?= base_url('/admin/categories/create') ?>" class="btn btn-sm btn-primary">
 			<i class="fa fa-plus-circle"></i> &nbsp; Add Category
 		</a>
 		<div class="row mt-2">
@@ -14,43 +14,43 @@
 					<table class="table table-bordered">
 						<thead>
 							<tr>
-								<th>#</th>
-								<th>First Name</th>
-								<th>Last Name</th>
-								<th>Username</th>
+								<th class="w-50 ac">#</th>
+								<th>Category Title</th>
+								<th>Parent Category</th>
+								<th class="w-250 ac">Action</th>
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<td>1</td>
-								<td>Mark</td>
-								<td>Otto</td>
-								<td>@mdo</td>
-							</tr>
-							<tr>
-								<td>2</td>
-								<td>Jacob</td>
-								<td>Thornton</td>
-								<td>@fat</td>
-							</tr>
-							<tr>
-								<td>3</td>
-								<td>Larry</td>
-								<td>the Bird</td>
-								<td>@twitter</td>
-							</tr>
+							<?php foreach($categories as $row): ?>
+								<tr>
+									<td class="ac">1</td>
+									<td>
+										<?= $row->cat_title ?>
+									</td>
+									<td>
+										<?= $row->parent_cat_id ?>
+									</td>
+									<td class="ac">
+										<a href="<?= base_url('/admin/categories/edit/' . $row->id) ?>" class="btn btn-info btn-xs">
+											<i class="fa fa-edit"></i>
+										</a>
+										<a href="<?= base_url('/admin/categories/delete/' . $row->id) ?>" class="btn btn-danger btn-xs">
+											<i class="fa fa-trash"></i>
+										</a>
+
+									</td>
+								</tr>
+							<?php endforeach; ?>
+
 						</tbody>
 					</table>
+					<div class="float-right">
+						<?= $pager->links() ?>
+					</div>
 				</div>
 			</div>
 			
 		</div>
 	</div>
 </div>
-
-
-
-
-
-
 <?= $this->endSection() ?>

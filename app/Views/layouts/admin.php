@@ -13,7 +13,9 @@
 
     <link href="<?= base_url('adminfiles/css/animate.css') ?>" rel="stylesheet">
     <link href="<?= base_url('adminfiles/css/style.css') ?>" rel="stylesheet">
+    <link href="<?= base_url('adminfiles/css/custom.css') ?>" rel="stylesheet">
 
+    <?= $this->renderSection('styles') ?>
 </head>
 
 <body class="">
@@ -26,6 +28,7 @@
             <?= $this->include('layouts/partials/admin/header') ?>
 
             <div class="wrapper">
+                <?= $this->include('layouts/partials/admin/flash_message') ?>
                 <?= $this->renderSection('content') ?>
             </div>
             <?= $this->include('layouts/partials/admin/footer') ?>
@@ -45,7 +48,7 @@
     <!-- Custom and plugin javascript -->
     <script src="<?= base_url('adminfiles/js/inspinia.js') ?>"></script>
     <script src="<?= base_url('adminfiles/js/plugins/pace/pace.min.js') ?>"></script>
-
+    <?= $this->renderSection('scripts') ?>
 
 </body>
 

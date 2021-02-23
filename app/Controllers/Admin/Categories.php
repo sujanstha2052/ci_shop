@@ -8,9 +8,17 @@ use App\Models\CategoryModel;
 
 class Categories extends BaseController
 {
-	public function index()
+	public function manage()
 	{
-		return view('admin/categories/index');
+		$model = new CategoryModel();
+		$data = [
+			'page_title' => 'Manage Category',
+			'categories' => $model->paginate(2),
+			'pager'		 => $model->pager
+		];
+
+
+		return view('admin/categories/index', $data);
 	}
 
 	public function create()
@@ -20,13 +28,36 @@ class Categories extends BaseController
 			$model = new CategoryModel;
 
 			if($model->insert($category)) {
-				echo "true";
+				return redirect()->to('/admin/categories/manage')
+				->with('success', 'Category Created Successfully!!');
 			} else {
-				echo "false";
-				displayArr($model->errors());
+				return redirect()->back()
+				->withInput()
+				->with('error', $model->errors());
+				// displayArr($model->errors());
 			}
-			die;
+			// die;
 		}
 		return view('admin/categories/create');
+	}
+
+	public function edit($id = null)
+	{
+		$model = new CategoryModel;
+		if(!empty($_POST)) {
+			$category = new Category($this->request->getPost());
+			if($model->update($id, $category)) {
+				return redirect()->to('/admin/categories/manage')
+				->with('success', 'Category Updated Successfully!!');
+			} else {
+				return redirect()->back()
+				->withInput()
+				->with('error', $model->errors());
+				// displayArr($model->errors());
+			}
+		}
+
+		$data['category'] = $model->find($id);
+		return view('admin/categories/edit', $data);
 	}
 }

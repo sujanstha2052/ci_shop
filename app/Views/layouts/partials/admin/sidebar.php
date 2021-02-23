@@ -34,6 +34,20 @@
                 <a href="layouts.html"><i class="fa fa-diamond"></i> <span class="nav-label">Layouts</span></a>
             </li>
 
+            <li>
+                <a href="<?= base_url('admin/categories/manage') ?>">
+                    <i class="fa fa-list-alt"></i> 
+                    <span class="nav-label">Manage Category</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="<?= base_url('admin/store_items/manage') ?>">
+                    <i class="fa fa-suitcase"></i>
+                    <span class="nav-label">Manage Store_items</span>
+                </a>
+            </li>
+
         </ul>
 
     </div>
