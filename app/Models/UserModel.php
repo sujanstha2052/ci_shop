@@ -53,4 +53,21 @@ class UserModel extends Model
 		return $this->where('email', $email)->first();
 	}
 
+	public function disablePasswordValidation()
+	{
+		unset($this->validationRules['password']);
+		unset($this->validationRules['confirm_password']);
+	}
+
+	public function activateByToken($token)
+	{
+		$token_hash = hash_hmac('sha256', $token, $_ENV['HASH_SECRET_KEY']);
+		$user = $this->where('verification_code', $token_hash)->first();
+
+		if($user !== null) {
+			$user->activate();
+			$this->protect(false)->save($user);
+		}
+	}
+
 }

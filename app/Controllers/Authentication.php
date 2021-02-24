@@ -60,7 +60,11 @@ class Authentication extends BaseController
 
     public function activate($token)
     {
-        
+        $model = new UserModel;
+        $model->activateByToken($token);
+
+        return redirect()->to('/login')
+        ->with('success', 'Account Activated Successfully!!');
     }
 
     private function sendActivationEmail($user)
@@ -71,7 +75,7 @@ class Authentication extends BaseController
 
         $message = view('emails/activation_email', [
             'token' => $user->token
-        ])
+        ]);
         $email->setMessage($message);
         $email->send();
     }
