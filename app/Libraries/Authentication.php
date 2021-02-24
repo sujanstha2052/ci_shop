@@ -13,18 +13,22 @@ class Authentication
 		$session = session();
 
 		if($user === null) {
-			$session->set('error', 'Invalid Credentials!!');
+			$session->setFlashdata('error', 'Invalid Credentials!!');
 			return false;
 		}
 
 		if(!$user->verifyPassword($password)) {
-			$session->set('error', 'Invalid Credentials!!');
+			$session->setFlashdata('error', 'Invalid Credentials!!');
 			return false;
 		}
 
 		if($user->verification_code != '') { 
-			$session->set('warning', 'Please verify your account first!!');
+			$session->setFlashdata('warning', 'Please verify your account first!!');
 			return false;
+		}
+
+		if($user->status != 'active') {
+			$session->setFlashdata('warning', 'Your account is blocked. Please Contact Us For More detail!!');
 		}
 
 		$session->regenerate();

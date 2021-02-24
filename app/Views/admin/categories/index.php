@@ -23,7 +23,9 @@
 						<tbody>
 							<?php foreach($categories as $row): ?>
 								<tr>
-									<td class="ac">1</td>
+									<td class="ac">
+										<?= $row->id ?>
+									</td>
 									<td>
 										<?= $row->cat_title ?>
 									</td>

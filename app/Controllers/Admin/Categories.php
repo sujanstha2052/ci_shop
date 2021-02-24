@@ -13,7 +13,7 @@ class Categories extends BaseController
 		$model = new CategoryModel();
 		$data = [
 			'page_title' => 'Manage Category',
-			'categories' => $model->paginate(2),
+			'categories' => $model->paginate(10),
 			'pager'		 => $model->pager
 		];
 

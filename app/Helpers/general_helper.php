@@ -14,21 +14,40 @@ if (!function_exists('getStatus')) {
     {
         switch ($data) {
             case 'pending':
-                $status = 'warning';
-                break;
+            $status = 'warning';
+            break;
             case 'active':
-                $status = 'success';
-                break;
+            $status = 'success';
+            break;
 
             case 'inactive':
-                $status = 'danger';
-                break;
+            $status = 'danger';
+            break;
 
             default:
-                $status = 'default';
-                break;
+            $status = 'default';
+            break;
         }
 
         return $status;
+    }
+}
+
+if(!function_exists('show_404')) {
+    function show_404()
+    {
+        throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
+    }
+}
+
+if(!function_exists('deleteImage')) {
+    function deleteImage($path = '') {
+        if($path == '') {
+            show_404();
+        }
+
+        if(is_file($path)) {
+            @unlink($path);
+        }
     }
 }

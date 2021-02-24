@@ -38,4 +38,22 @@ class StoreItemModel extends Model
 	{
 		return $this->where('item_url', $slug)->first();
 	}
+
+	public function getStoreImage($id, $type = "small_pic")
+	{
+		$store_item = $this->where("id", $id)->first();
+		if($store_item->{$type} == '') {
+			show_404();
+		}
+
+		$path = WRITEPATH . 'uploads/store_items/' . $type .'/' . $store_item->{$type};
+
+		$finfo = new \finfo(FILEINFO_MIME);
+		$type = $finfo->file($path);
+
+		header("Content-Type: $type");
+		header("Content-Length: " . filesize($path));
+		readfile($path);
+		exit;
+	}
 }

@@ -21,8 +21,8 @@ class Authentication extends BaseController
                 ->with('info', 'Login Successful!!');
             } else {
                 return redirect()->back()
-                ->withInput()
-                ->with('warning', "Invalid Login!!");
+                ->withInput();
+                // ->with('warning', "Invalid Login!!");
             }
         }
         return view('auth/login');
@@ -33,7 +33,9 @@ class Authentication extends BaseController
         if(!empty($_POST)) {
             $user = new User($this->request->getPost());
             $model = new \App\Models\UserModel;
+            $user->startVerification();
             if($model->insert($user)) {
+                $this->sendActivationEmail($user);
                 return redirect()->to('/register')
                 ->with('info', 'Verification email sent to email. Please Verify to Login!!');
             } else {
@@ -54,5 +56,23 @@ class Authentication extends BaseController
     public function showLogoutMsg()
     {
         return redirect()->to('/')->with('info', 'Logout Successfully!!');
+    }
+
+    public function activate($token)
+    {
+        
+    }
+
+    private function sendActivationEmail($user)
+    {
+        $email = service('email');
+        $email->setTo($user->email);
+        $email->setSubject('CIShop: Account Activation');
+
+        $message = view('emails/activation_email', [
+            'token' => $user->token
+        ])
+        $email->setMessage($message);
+        $email->send();
     }
 }
