@@ -20,35 +20,35 @@
 
 <body class="">
 
-    <div id="wrapper">
-        <?= $this->include('layouts/partials/admin/sidebar') ?>
+<div id="wrapper">
+    <?= $this->include('layouts/partials/admin/sidebar') ?>
 
 
-        <div id="page-wrapper" class="gray-bg">
-            <?= $this->include('layouts/partials/admin/header') ?>
+    <div id="page-wrapper" class="gray-bg">
+        <?= $this->include('layouts/partials/admin/header') ?>
 
-            <div class="wrapper">
-                <?= $this->include('layouts/partials/admin/flash_message') ?>
-                <?= $this->renderSection('content') ?>
-            </div>
-            <?= $this->include('layouts/partials/admin/footer') ?>
-
-
-
+        <div class="wrapper">
+            <?= $this->include('layouts/partials/admin/flash_message') ?>
+            <?= $this->renderSection('content') ?>
         </div>
+        <?= $this->include('layouts/partials/admin/footer') ?>
+
+
     </div>
+</div>
 
-    <!-- Mainly scripts -->
-    <script src="<?= base_url('adminfiles/js/jquery-3.1.1.min.js') ?>"></script>
-    <script src="<?= base_url('adminfiles/js/popper.min.js') ?>"></script>
-    <script src="<?= base_url('adminfiles/js/bootstrap.js') ?>"></script>
-    <script src="<?= base_url('adminfiles/js/plugins/metisMenu/jquery.metisMenu.js') ?>"></script>
-    <script src="<?= base_url('adminfiles/js/plugins/slimscroll/jquery.slimscroll.min.js') ?>"></script>
+<!-- Mainly scripts -->
+<script src="<?= base_url('adminfiles/js/jquery-3.1.1.min.js') ?>"></script>
+<script src="<?= base_url('adminfiles/js/popper.min.js') ?>"></script>
+<script src="<?= base_url('adminfiles/js/bootstrap.js') ?>"></script>
+<script src="<?= base_url('adminfiles/js/plugins/metisMenu/jquery.metisMenu.js') ?>"></script>
+<script src="<?= base_url('adminfiles/js/plugins/slimscroll/jquery.slimscroll.min.js') ?>"></script>
 
-    <!-- Custom and plugin javascript -->
-    <script src="<?= base_url('adminfiles/js/inspinia.js') ?>"></script>
-    <script src="<?= base_url('adminfiles/js/plugins/pace/pace.min.js') ?>"></script>
-    <?= $this->renderSection('scripts') ?>
+<!-- Custom and plugin javascript -->
+<script src="<?= base_url('adminfiles/js/inspinia.js') ?>"></script>
+<script src="<?= base_url('adminfiles/js/plugins/pace/pace.min.js') ?>"></script>
+<script src="<?= base_url('adminfiles/js/main.js') ?>"></script>
+<?= $this->renderSection('scripts') ?>
 
 </body>
 

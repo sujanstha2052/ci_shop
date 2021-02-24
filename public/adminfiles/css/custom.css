@@ -1,15 +1,19 @@
 .w-50 {
-	width: 50px !important;
+    width: 50px !important;
 }
 
 .w-250 {
-	width: 250px !important;
+    width: 250px !important;
 }
 
 .ac {
-	text-align: center;
+    text-align: center;
+}
+
+.ar {
+    text-align: right;
 }
 
 .text-green {
-	color: green !important;
+    color: green !important;
 }
