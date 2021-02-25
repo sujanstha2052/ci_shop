@@ -5,6 +5,26 @@ namespace App\Controllers\Admin;
 use App\Controllers\BaseController;
 use App\Entities\Store_item;
 use App\Models\StoreItemModel;
+use App\Models\StoreItemSizeModel;
+use App\Models\StoreItemColourModel;
+
+
+    // === === === === === === === === === === === === === === === ===
+    // === === === === === === === === === === === === === === === ===
+    // === === === === === === === === === === === === === === === ===
+    // === === === === === === === === === === === === === === === ===
+    // === === === === === === === === === === === === === === === ===
+    // === === === === === === === === === === === === === === === ===
+    // === === === === === === === === === === === === === === === ===
+    // @todo :- need to create medium Image for description Image
+    // === === === === === === === === === === === === === === === ===
+    // === === === === === === === === === === === === === === === ===
+    // === === === === === === === === === === === === === === === ===
+    // === === === === === === === === === === === === === === === ===
+    // === === === === === === === === === === === === === === === ===
+    // === === === === === === === === === === === === === === === ===
+    // === === === === === === === === === === === === === === === ===
+
 
 class Store_items extends BaseController
 {
@@ -26,7 +46,7 @@ class Store_items extends BaseController
             $model = new StoreItemModel();
 
             if ($model->insert($store_item)) {
-                return redirect()->to('/admin/store_items/manage')
+                return redirect()->to('/admin/store_items/edit/' . $model->insertID)
                 ->with('success', 'Store Items Created Successfully!!');
             } else {
                 return redirect()->back()
@@ -60,6 +80,20 @@ class Store_items extends BaseController
         $data['store_item'] = $store_item;
         $data['store_item_id'] = $store_item->id;
         return view('admin/store_items/edit', $data);
+    }
+
+    public function delete($id = null)
+    {
+        $model = new StoreItemModel();
+        $this->delete_image($id);
+        $model->delete($id, false);
+        $store_item_colour_model = new StoreItemColourModel();
+        $store_item_colour_model->deleteByItemId($id);
+
+        $store_item_size_model = new StoreItemSizeModel();
+        $store_item_size_model->deleteByItemId($id);
+        return redirect()->to('/admin/store_items/manage')
+        ->with('success', 'Item Deleted Succssfully!!');
     }
 
     public function upload_image($id = null)
@@ -115,7 +149,7 @@ class Store_items extends BaseController
         return view('admin/store_items/upload_image', $data);
     }
 
-    public function delete_image($id)
+    public function delete_image($id, $redirect = true)
     {
         $model = new StoreItemModel();
         $store_item = $model->find($id);
@@ -131,7 +165,10 @@ class Store_items extends BaseController
         $store_item->small_pic = null;
         $model->protect(false)->save($store_item);
 
-        return redirect()->to('/admin/store_items/edit/' . $id)->with('success', 'Image Deleted Successfully!!');
+        if($redirect)
+            return redirect()->to('/admin/store_items/edit/' . $id)->with('success', 'Image Deleted Successfully!!');
+
+        return true;
     }
 
 

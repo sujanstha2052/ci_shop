@@ -2,6 +2,8 @@
 
 namespace App\Models;
 use CodeIgniter\Model;
+use App\Models\StoreItemSizeModel;
+use App\Models\StoreItemColourModel;
 
 class StoreItemModel extends Model
 {
@@ -37,6 +39,18 @@ class StoreItemModel extends Model
 	public function findBySlug($slug)
 	{
 		return $this->where('item_url', $slug)->first();
+	}
+
+	public function getAllColours($id)
+	{
+		$model = new StoreItemColourModel();
+		return $model->where("item_id", $id)->findAll();
+	}
+
+	public function getAllSizes($id)
+	{
+		$model = new StoreItemSizeModel();
+		return $model->where("item_id", $id)->findAll();
 	}
 
 	public function getStoreImage($id, $type = "small_pic")

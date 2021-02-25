@@ -16,4 +16,9 @@ class StoreItemColourModel extends Model
 		'item_id' => 'required',
 		'colour' => 'required',
 	];
+
+	public function deleteByItemId($item_id)
+	{
+		$this->where("item_id", $item_id)->delete();
+	}
 }

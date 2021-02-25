@@ -10,12 +10,18 @@
         <h3>Item Options</h3>
     </div>
     <div class="ibox-content">
-        <a href="<?= base_url('/admin/store_items/upload_image/' . $store_item->id) ?>" class="btn btn-primary">Upload
-        Item Image</a>
+        <?php if($store_item->big_pic == ""){ ?>
+            <a href="<?= base_url('/admin/store_items/upload_image/' . $store_item->id) ?>" class="btn btn-primary">Upload
+            Item Image</a>
+        <?php }else{ ?>
+            <a href="<?= base_url('/admin/store_items/delete_image/' . $store_item->id) ?>" class="btn btn-danger">Delete
+            Item Image</a>
+        <?php } ?>
         <a href="<?= base_url('/admin/store_item_colours/update/' . $store_item->id) ?>" class="btn btn-primary">Update Item Colours</a>
         <a href="<?= base_url('/admin/store_item_sizes/update/' . $store_item->id) ?>" class="btn btn-primary">Update Item Sizes</a>
         <a href="" class="btn btn-primary">Update Categories</a>
-        <a href="" class="btn btn-danger">Delete Item</a>
+        <a href="<?= base_url('/product/' . $store_item->item_url) ?>" class="btn btn-info" target="_blank">View In Shop</a>
+        <a href="<?= base_url('/admin/store_items/delete/' . $store_item->id) ?>" class="btn btn-danger">Delete Item</a>
     </div>
 </div>
 
@@ -74,6 +80,17 @@
         </div>
     </div>
 </div>
+
+<?php if($store_item->big_pic != ""): ?>
+    <div class="ibox">
+        <div class="ibox-title">
+            <h3>Item Image</h3>
+        </div>
+        <div class="ibox-content">
+            <img src="<?= site_url('/admin/store_items/store_image/' . $store_item->id) ?>" alt="" class="mx-auto d-block img-fluid">
+        </div>
+    </div>
+<?php endif; ?>
 <?= $this->endSection() ?>
 
 <?= $this->section('scripts') ?>

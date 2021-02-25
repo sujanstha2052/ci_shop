@@ -38,6 +38,8 @@ $routes->get('/login', 'Authentication::login', ['filter' => 'guest']);
 $routes->get('/register', 'Authentication::registration', ['filter' => 'guest']);
 $routes->get('/logout', 'Authentication::logout');
 
+$routes->get('/product/(:any)', 'Products::index/$1');
+
 // === === === === === === === === === === === === === === === === === === === === ===
 // Admin Routes
 // === === === === === === === === === === === === === === === === === === === === ===
