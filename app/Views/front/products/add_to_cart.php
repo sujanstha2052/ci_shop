@@ -1,4 +1,4 @@
-<div style="background-color: #ddd; border-radius: 7px; margin-top: 24px;">
+<div style="background-color: #ddd; border-radius: 7px;">
 	<table class="table">
 		<tr>
 			<td colspan="2">Item ID: <?= $store_item_id ?></td>

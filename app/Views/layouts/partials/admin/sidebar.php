@@ -44,7 +44,7 @@
             <li>
                 <a href="<?= base_url('admin/store_items/manage') ?>">
                     <i class="fa fa-suitcase"></i>
-                    <span class="nav-label">Manage Store_items</span>
+                    <span class="nav-label">Manage Store Items</span>
                 </a>
             </li>
 

@@ -2,9 +2,9 @@
 <?= $this->section('title') ?><?= isset($page_title) ? $page_title : '' ?><?= $this->endSection() ?>
 
 <?= $this->section('content') ?>
-<div class="row">
+<div class="row" style="margin-top: 24px;">
 	<div class="col-md-4">
-		<img src="<?= site_url('/products/image/' . $store_item->id) ?>" alt="">
+		<img src="<?= site_url('/products/image/' . $store_item->id) ?>" class="img-fluid mx-auto d-block" alt="">
 	</div>
 	<div class="col-md-5">
 		<h2>
