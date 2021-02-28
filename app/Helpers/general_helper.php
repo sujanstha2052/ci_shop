@@ -12,20 +12,60 @@ if (!function_exists('displayArr')) {
 if (!function_exists('getStatus')) {
     function getStatus($data)
     {
-        switch ($data) {
-            case 'pending':
-            $status = 'warning';
+        switch (@strtoupper($data)) {
+            case 'VERIFIED':
+            case 'VERIFY':
+            case 1:
+            $status = "purple";
             break;
-            case 'active':
+            case 'DELETED':
+            case 'DECLINED':
+            case 'REJECTED':
+            case 'DELETE':
+            case 'DECLINE':
+            case 'REJECT':
+            case 'BOUNCED':
+            case 'INACTIVE':
+            case 2:
+            $status = "danger";
+            break;
+            case 'DISPATCH':
+            case 'DISPATCHED':
+            case 3:
+            $status = "gray";
+            break;
+            case 'MATURED':
+            case 'MATURE':
+            case 4:
+            $status = "yellow";
+            break;
+            case 'APPROVED':
+            case 'APPROVE':
+            case 'SETTLED':
+            case 'ACTIVE':
+            case 5:
             $status = 'success';
             break;
-
-            case 'inactive':
-            $status = 'danger';
+            case 'PARTIALLYAPPROVED':
+            case 6:
+            $status = 'info';
+            break;
+            case 'RECEIVED':
+            case 'RECEIVE':
+            case 'REPAIRED':
+            case 7:
+            $status = "darkgreen";
+            break;
+            case 'ENCASHED':
+            case 'ENCASH':
+            case 8:
+            $status = "brown";
             break;
 
+            case 'PENDING':
+            case 0:
             default:
-            $status = 'default';
+            $status = 'warning';
             break;
         }
 
