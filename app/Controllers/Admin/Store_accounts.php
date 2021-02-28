@@ -3,7 +3,7 @@
 namespace App\Controllers\Admin;
 
 use App\Entities\User;
-// use App\Models\UserModel;
+use App\Models\UserModel;
 use App\Entities\Store_account;
 use App\Models\StoreAccountModel;
 use App\Controllers\BaseController;
@@ -19,21 +19,20 @@ class Store_accounts extends BaseController
 	public function create()
 	{
 		if(!empty($_POST)) {
-			// $user = new User($this->request->getPost());
+			$user = new User($this->request->getPost());
 			$user_model = new \App\Models\UserModel();
-			$data['first_name'] = $this->request->getPost('first_name');
-			$data['last_name'] = $this->request->getPost('last_name');
-			$data['email'] = $this->request->getPost('email');
-			$data['password'] = $this->request->getPost('password');
-			$data['status'] = 'inactive';
-			$data['is_admin'] = 0;
+			$user_model->disablePasswordValidation();
+			$user->status = 'active';
+			$user_model->insert($user);
+			// $data['first_name'] = $this->request->getPost('first_name');
+			// $data['last_name'] = $this->request->getPost('last_name');
+			// $data['email'] = $this->request->getPost('email');
+			// $data['password'] = $this->request->getPost('password');
+			// $data['status'] = 'active';
+			// $data['is_admin'] = 0;
 
-			$user_model->save($data);
+			// $user_model->save($data);
 
-			displayArr($user_model->insertID);
-
-
-			die;
 
 			$store_account = new Store_account($this->request->getPost());
 			$store_model = new StoreAccountModel();
@@ -43,8 +42,8 @@ class Store_accounts extends BaseController
 
 
 			// echo "<pre>";
-			// displayArr($store_account);
-			// displayArr($user);
+			displayArr($store_model);
+			displayArr($user_model);
 
 			// echo "</pre>";
 			die;
