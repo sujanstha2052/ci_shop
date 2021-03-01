@@ -19,34 +19,30 @@ class Store_accounts extends BaseController
 	public function create()
 	{
 		if(!empty($_POST)) {
-			$user = new User($this->request->getPost());
-			$user_model = new \App\Models\UserModel();
-			$user_model->disablePasswordValidation();
-			$user->status = 'active';
-			$user_model->insert($user);
-			// $data['first_name'] = $this->request->getPost('first_name');
-			// $data['last_name'] = $this->request->getPost('last_name');
-			// $data['email'] = $this->request->getPost('email');
-			// $data['password'] = $this->request->getPost('password');
-			// $data['status'] = 'active';
-			// $data['is_admin'] = 0;
-
-			// $user_model->save($data);
+			$db = db_connect();
 
 
-			$store_account = new Store_account($this->request->getPost());
-			$store_model = new StoreAccountModel();
-			$store_account->user_id = $user_model->insertID;
+			$db->transStart();
+			try {
+				$user = new User($this->request->getPost());
+				$user_model = new \App\Models\UserModel();
+				$user_model->disablePasswordValidation();
+				$store_account = new Store_account($this->request->getPost());
+				$store_model = new StoreAccountModel();
 
-			$store_model->insert($store_account);
+				$user->status = 'active';
+				$user_model->insert($user);
 
+				$store_account->user_id = $user_model->insertID;
 
-			// echo "<pre>";
-			displayArr($store_model);
-			displayArr($user_model);
+				$store_model->insert($store_account);
+				$db->transCommit();
+				return redirect()->to('/admin/store_accounts/manage/')->with('success', 'Store account created Successfully!!');
+			} catch (Exception $e) {
+				$db->transRollback();
 
-			// echo "</pre>";
-			die;
+				return redirect()->back()->withInput()->with('errors', [$user_model->errors(), $store_model->errors()]);
+			}
 
 		}
 
